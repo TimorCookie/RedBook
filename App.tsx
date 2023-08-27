@@ -7,26 +7,27 @@
 
 import React from 'react';
 
-import {SafeAreaView, StatusBar, Text, View} from 'react-native';
+import {StatusBar, Text, View} from 'react-native';
+
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+import Welcom from './src/modules/welcome/Welcome';
+import Login from './src/modules/login/Login';
 
 const Stack = createNativeStackNavigator();
 
-function HomeScreen() {
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Home 2222</Text>
-    </View>
-  );
-}
 function App(): JSX.Element {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <SafeAreaProvider style={{width: '100%', height: '100%'}}>
+      <StatusBar barStyle={'dark-content'} backgroundColor={'white'} />
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Welcome">
+          <Stack.Screen name="Welcom" component={Welcom} />
+          <Stack.Screen name="Login" component={Login} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 }
 
